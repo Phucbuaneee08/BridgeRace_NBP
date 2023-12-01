@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697ff48212a117a4f8f4be087394b0cd, type: 3}
+  m_Name: ColorData
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 0ae1ed4c3399f214f8770f07bf047229, type: 2}
+  - {fileID: 2100000, guid: b9d44d60144f41f49b3b80aee1991f89, type: 2}
+  - {fileID: 2100000, guid: 5f998b044762aff4f9577c001af2d5ad, type: 2}
+  - {fileID: 2100000, guid: 2f8563f6fcf589b4297a4ff7dc4e6959, type: 2}
+  - {fileID: 2100000, guid: bc89288df1b8f7340b03414aabd20ddc, type: 2}
+  - {fileID: 2100000, guid: 72aff0e403838e24d8444c1162d203e9, type: 2}
