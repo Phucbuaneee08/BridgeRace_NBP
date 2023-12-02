@@ -15,7 +15,7 @@ public class Brick : GameUnit
 
     public bool CheckColor(ColorType cl)
     {
-        return cl == brickColor;
+        return cl == brickColor ;
     }
     
     protected void SetRandomColor(GameObject brick, List<ColorType> colorList)

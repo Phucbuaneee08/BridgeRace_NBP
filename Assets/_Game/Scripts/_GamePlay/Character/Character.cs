@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
     [SerializeField] private Brick brickPrefab;
     [SerializeField] private GameObject dropBrickPrefab;
     [SerializeField] private GameObject brickHolder;
-    [SerializeField] private LayerMask BRIDGE_BRICK;
+    [SerializeField] private LayerMask GROUND;
     [SerializeField] protected GameObject spawn;
 
     public ColorType color;
@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
     public virtual void OnInit()
     {
         ChangeAnim(Const.ANIM_IDLE);
-
+  
     }
     public void ChangeColor(ColorType colorType)
     {
@@ -51,21 +51,12 @@ public class Character : MonoBehaviour
         listBricks.Push(newBrick);
     }
     public bool CheckBrick() => listBricks.Count > 0;
-
-
-
-    public bool CheckNextBrick()
+    protected bool CheckGround()
     {
-        RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 10f, BRIDGE_BRICK))
-        {
-            return hit.collider.GetComponent<Brick>().CheckColor(color);
-        }
-        else return false;
-
-
+        return Physics.Raycast(transform.position + Vector3.up * 5f, Vector3.down * 5f, 10f, GROUND);
     }
+
+ 
     public void RemoveOneBrick()
     {
         if (listBricks.Count > 0)

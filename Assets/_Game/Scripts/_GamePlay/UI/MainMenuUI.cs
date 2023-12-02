@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class MainMenuUI : MonoBehaviour
 {
-   
+    
     public void ClickPlayButton()
     {
         Debug.Log("click");
-        UIManager.Instance.mainMenuUI.SetActive(false);
         LevelManager.Instance.OnStart();
-        UIManager.Instance.gamePlay.SetActive(true);
+       
+    }
+    public void OpenLevel(int level)
+    {
+        LevelManager.Instance.SetLevel(level);
+        LevelManager.Instance.OnStart();
     }
 
 }

@@ -21,7 +21,6 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void LoadLevel()
     {
-        
         LoadLevel(level);
         OnInit();
     }
@@ -41,7 +40,11 @@ public class LevelManager : Singleton<LevelManager>
         currentLevel = Instantiate(levels[indexLevel - 1]);
         currentLevel.OnInit();
     }
-
+    public void SetLevel(int level)
+    {
+        this.level = level;
+        LoadLevel();
+    }
     public void NextLevel()
     {
         level++;
@@ -79,6 +82,8 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnStart()
     {
+        UIManager.Instance.mainMenuUI.SetActive(false);
+        UIManager.Instance.gamePlay.SetActive(true);
         GameManager.Instance.ChangeState(GameState.GamePlay);
         ActiveBot();
     }

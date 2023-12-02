@@ -7,8 +7,7 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] private LayerMask BRIDGE;
-    [SerializeField] private LayerMask GROUND;
-
+    [SerializeField] private LayerMask BRIDGE_BRICK;
     public VariableJoystick variableJoystick;
     public Rigidbody rb;
 
@@ -57,10 +56,17 @@ public class Player : Character
         {
             RaycastHit hit;
 
-            if (isGrounded)
+            if (isGrounded )
             {
+               
+                if (!CheckNextBrick()&&BrickCount()==0)
+                {
+                    moveVector = new Vector3(moveVector.x, 0, 0);
+                }
                 transform.rotation = Quaternion.LookRotation(direction);
                 rb.MovePosition(rb.position + moveVector);
+                
+
             }
 
             if (Physics.Raycast(transform.position + Vector3.up * 5f, Vector3.down * 5f, out hit, 10f, BRIDGE))
@@ -97,9 +103,17 @@ public class Player : Character
 
 
     }
-    private bool CheckGround()
+    public bool CheckNextBrick()
     {
-        return Physics.Raycast(transform.position + Vector3.up * 5f, Vector3.down * 5f, 10f, GROUND);
+        RaycastHit hit;
+       
+        if (Physics.Raycast(transform.position,new Vector3(0, 0, 1), out hit, 1f, BRIDGE_BRICK))
+        {
+            return hit.collider.GetComponent<Brick>().CheckColor(color);
+        }
+        else return true;
+
+
     }
 
     private void MoveOnBridge(Vector3 direction, RaycastHit hit)
@@ -114,7 +128,7 @@ public class Player : Character
 
 
             // Áp dụng quay đối tượng dựa trên hướng di chuyển và bề mặt dốc
-            rb.MoveRotation(Quaternion.LookRotation(moveDirection, slopeNormal));
+            //rb.MoveRotation(Quaternion.LookRotation(moveDirection, slopeNormal));
         }
 
         if (moveDirection != Vector3.zero) transform.rotation = Quaternion.LookRotation(moveDirection);
